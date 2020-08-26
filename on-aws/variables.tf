@@ -18,7 +18,7 @@ variable "vpc_cidr_block" {
   type = string
 }
 
-variable "instance_default_pubkey" {
+variable "bastion_default_pubkey" {
   type = string
 }
 
@@ -31,18 +31,23 @@ variable "bastion_access_cidrs" {
   type = list(string)
 }
 
-variable "windows_ip_hostnum" {
+variable "windows_ip_hostnum_base" {
   type    = number
   default = 11
 }
 
+variable "windows_instance_count" {
+  type    = number
+  default = 1
+}
+
 variable "arc_data" {
   type = object({
-    appId = string
-    appSec = string
-    resourceGroup = string
-    tenantId = string
-    location = string
+    appId          = string
+    appSec         = string
+    resourceGroup  = string
+    tenantId       = string
+    location       = string
     subscriptionId = string
   })
 }

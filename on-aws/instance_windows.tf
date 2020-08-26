@@ -1,12 +1,13 @@
 resource "aws_instance" "windows" {
+  count                  = var.windows_instance_count
   ami                    = "ami-0b5271aea7b566f9a"
   instance_type          = "t3.medium"
   vpc_security_group_ids = [aws_security_group.windows.id, aws_security_group.windows_access.id]
   subnet_id              = aws_subnet.private.id
-  private_ip             = cidrhost(aws_subnet.private.cidr_block, var.windows_ip_hostnum)
+  private_ip             = cidrhost(aws_subnet.private.cidr_block, var.windows_ip_hostnum_base + count.index)
   user_data              = base64encode(local.windows_cloudinit)
-  tags                   = merge(local.tags, map("Name", "${local.naming_prefix}windows-vm"))
-  volume_tags            = merge(local.tags, map("Name", "${local.naming_prefix}windows-disk"))
+  tags                   = merge(local.tags, map("Name", "${local.naming_prefix}windows${count.index}-vm"))
+  volume_tags            = merge(local.tags, map("Name", "${local.naming_prefix}windows${count.index}-disk"))
   key_name               = aws_key_pair.windows_access.key_name
   get_password_data      = true
 
