@@ -116,3 +116,22 @@ Once this is done, click in the Update management view on **Manage Machines** an
 
 With Change tracking enabled, the Inventory of installed Software is also visible. It will take some time again until data becomes available.
 
+### Azure Monitoring
+
+> This Integration still seems experimental.
+
+Enable this integration by going to the **Monitor** service in your
+Subscription and selecting the un-monitored Arc VMs.
+For each Arc VM follow the steps to enable Monitoring, which will start multiple Extension deployments on your Arc VM resources.
+
+> Notes:
+>
+> As of this writing the Dependency Agent for Windows and Linux fails to deploy,
+> due to timeouts, even with the agent being pre-installed through cloud-init scripts.
+>
+> Also, if the monitoring views show some details about upgrading the solution,
+> follow the steps to allow for hybrid machine data integration.
+
+The integration is ready if you can see metrics being displayed in the Performance view
+and once the Map view shows your Arc VM and used port connections.
+
