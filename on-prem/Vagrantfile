@@ -1,0 +1,85 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.define "win2016" do |node|
+    node.vm.provider "virtualbox" do |vb|
+      # vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      vb.cpus = 2
+      vb.memory = "4096"
+    end
+    node.vm.box = "StefanScherer/windows_2016"
+    node.vm.box_version = "2019.01.09"
+    node.vm.synced_folder "./data", "/vagrant"
+    node.vm.provision "shell", path: "./provisioning/userdata.ps1", privileged: true, env: {
+      "arc_subscriptionId" => "#{ENV['arc_subscriptionId']}",
+      "arc_tenantId" => "#{ENV['arc_tenantId']}",
+      "arc_appId" => "#{ENV['arc_appId']}",
+      "arc_appSec" => "#{ENV['arc_appSec']}",
+      "arc_location" => "#{ENV['arc_location']}",
+      "arc_resourceGroup" => "#{ENV['arc_resourceGroup']}",
+    }
+    node.vm.hostname = "arc-win2k16"
+    node.vm.network "private_network", type: "dhcp"
+  end
+
+  config.vm.define "win2019" do |node|
+    node.vm.provider "virtualbox" do |vb|
+      # vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      vb.cpus = 2
+      vb.memory = "4096"
+    end
+    node.vm.box = "StefanScherer/windows_2019"
+    node.vm.box_version = "2020.01.15"
+    node.vm.synced_folder "./data", "/vagrant"
+    node.vm.provision "shell", path: "./provisioning/userdata.ps1", privileged: true, env: {
+      "arc_subscriptionId" => "#{ENV['arc_subscriptionId']}",
+      "arc_tenantId" => "#{ENV['arc_tenantId']}",
+      "arc_appId" => "#{ENV['arc_appId']}",
+      "arc_appSec" => "#{ENV['arc_appSec']}",
+      "arc_location" => "#{ENV['arc_location']}",
+      "arc_resourceGroup" => "#{ENV['arc_resourceGroup']}",
+    }
+    node.vm.hostname = "arc-win2k19"
+    node.vm.network "private_network", type: "dhcp"
+  end
+
+  config.vm.define "ubuntu1804" do |node|
+    node.vm.box = "ubuntu/bionic64"
+    node.vm.box_version = "20200107.0.0"
+    node.vm.provider :virtualbox do |vb|
+      vb.cpus = 2
+      vb.memory = 1024
+    end
+    node.vm.synced_folder "./data", "/vagrant", disabled: false
+    node.vm.provision "shell", path: "./provisioning/userdata.sh", privileged: true, env: {
+      "arc_subscriptionId" => "#{ENV['arc_subscriptionId']}",
+      "arc_tenantId" => "#{ENV['arc_tenantId']}",
+      "arc_appId" => "#{ENV['arc_appId']}",
+      "arc_appSec" => "#{ENV['arc_appSec']}",
+      "arc_location" => "#{ENV['arc_location']}",
+      "arc_resourceGroup" => "#{ENV['arc_resourceGroup']}",
+    }
+    node.vm.hostname = "arc-ubuntu1804"
+    node.vm.network "private_network", type: "dhcp"
+  end
+
+  config.vm.define "centos7" do |node|
+    node.vm.box = "bento/centos-7"
+    node.vm.box_version = "202001.16.0"
+    node.vm.provider :virtualbox do |vb|
+      vb.cpus = 2
+      vb.memory = 1024
+    end
+    node.vm.synced_folder "./data", "/vagrant", disabled: false
+    node.vm.provision "shell", path: "./provisioning/userdata.sh", privileged: true, env: {
+      "arc_subscriptionId" => "#{ENV['arc_subscriptionId']}",
+      "arc_tenantId" => "#{ENV['arc_tenantId']}",
+      "arc_appId" => "#{ENV['arc_appId']}",
+      "arc_appSec" => "#{ENV['arc_appSec']}",
+      "arc_location" => "#{ENV['arc_location']}",
+      "arc_resourceGroup" => "#{ENV['arc_resourceGroup']}",
+    }
+    node.vm.hostname = "arc-centos7"
+    node.vm.network "private_network", type: "dhcp"
+  end
+
+end
