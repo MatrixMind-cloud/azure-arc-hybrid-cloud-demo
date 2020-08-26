@@ -1,0 +1,6 @@
+.terraform*
+*.tfstate*
+tfplan
+tfdestroy
+settings.auto.tfvars
+credentials.auto.tfvars
