@@ -72,7 +72,7 @@ provisioning scripts, therefor you will need to prepare a credentials file.
 
 Working in subfolder `on-prem`, copy the `credentials.env.dist`
 to `credentials.env` and edit it's content according to your Azure Subscription
-and Service Principal details. Use the details output from **Step 2**.
+and Service Principal details. Use the details output from **Step 3**.
 
 * Get a list of available machines: `./vagrant.sh status`
 
@@ -85,4 +85,4 @@ and Service Principal details. Use the details output from **Step 2**.
 Go to Azure Arc in your Subscription and click your way through "Manage Server".
 
 For each of the listed VMs listed, add the VM Extension
-"Log Analytics Agent - Azure Arc" using the details from **Step 3**.
+"Log Analytics Agent - Azure Arc" using the details from **Step 4**.
