@@ -21,7 +21,7 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
   tags                        = merge(local.tags, map("Name", "${local.naming_prefix}bastion-vm"))
   volume_tags                 = merge(local.tags, map("Name", "${local.naming_prefix}bastion-disk"))
-  key_name                    = aws_key_pair.instance_access.key_name
+  key_name                    = aws_key_pair.bastion_access.key_name
 
   root_block_device {
     volume_type           = "gp2"

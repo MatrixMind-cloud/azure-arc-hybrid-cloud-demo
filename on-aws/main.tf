@@ -23,9 +23,9 @@ locals {
   })
 }
 
-resource "aws_key_pair" "instance_access" {
-  key_name   = "${local.naming_prefix}instance-key"
-  public_key = var.instance_default_pubkey
+resource "aws_key_pair" "bastion_access" {
+  key_name   = "${local.naming_prefix}bastion-key"
+  public_key = var.bastion_default_pubkey
 }
 
 resource "tls_private_key" "windows" {
