@@ -71,7 +71,7 @@ This Vagrant setup uses a little Bash wrapper to inject credentials into the
 provisioning scripts, therefor you will need to prepare a credentials file.
 
 Working in subfolder `on-prem`, copy the `credentials.env.dist`
-to `credentials.env` and edit it's content according to your Azure Subscription
+to `credentials.env` and edit its content according to your Azure Subscription
 and Service Principal details. Use the details output from **Step 3**.
 
 * Get a list of available machines: `./vagrant.sh status`
@@ -86,3 +86,33 @@ Go to Azure Arc in your Subscription and click your way through "Manage Server".
 
 For each of the listed VMs listed, add the VM Extension
 "Log Analytics Agent - Azure Arc" using the details from **Step 4**.
+
+### Azure Automation Account
+
+Go to Automation Account in your Subscription and create a new account,
+e.g. `arc-automation`, on the same resource group you used for your Arc VMs.
+Leave the settings as suggested, making sure the correct Location is selected.
+After its creation, dive into the Automation Account specific view.
+
+> Enabling Change tracking
+
+Select **Change tracking** from the menu.
+Here you will connect the account to the Log Analytics Workspace created for
+this project, e.g. `sndbox-azure-arc-law`.
+
+Once this is done, click in the Change Tracking view on **Manage Machines** and
+select the specific Arc VMs for now, skip the wildcard *Add all VMs* suggestion.
+
+It will take some time for Machine data to appear, moving on.
+
+> Enabling Update management
+
+Select **Update management** from the menu.
+Connect this to your Log Analytics Workspace, same as the before.
+
+Once this is done, click in the Update management view on **Manage Machines** and again add your Arc VMs, skipping the wildcard suggestion.
+
+> Enabling Inventory
+
+With Change tracking enabled, the Inventory of installed Software is also visible. It will take some time again until data becomes available.
+
