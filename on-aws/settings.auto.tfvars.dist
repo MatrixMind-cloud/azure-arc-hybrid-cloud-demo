@@ -1,0 +1,26 @@
+# AWS account specifics
+region = "eu-west-1"
+access_key = ""
+secret_key = ""
+
+# vpc settings, keeping it small for this demo
+vpc_cidr_block = "10.133.133.0/24"
+vpc_name = "demo"
+
+# bastion key-based access
+bastion_default_pubkey = ""
+# bastion ip whitelist
+bastion_access_cidrs = [""]
+
+# Azure Arc onboarding details for Windows Instance cloud-init
+arc_data = {
+  appId = ""
+  appSec = ""
+  resourceGroup = ""
+  tenantId = ""
+  location = ""
+  subscriptionId = ""
+}
+
+# Volume deployment if desired and space available
+windows_instance_count = 1
