@@ -18,6 +18,10 @@ Furthermore:
 * integrate through Azure Policy:
   - base system compliance checking
 
+
+---
+
+
 ## Azure Subscription preparations
 
 You require sufficient permissions to create a Service Principal,
@@ -63,6 +67,9 @@ Execute `scripts/03_az_logworkspace_create.ps1`
 Keep the output of this script safe and close-by!
 
 
+---
+
+
 ## Enrollment
 
 > On-Prem Vagrant simulation
@@ -79,6 +86,31 @@ and Service Principal details. Use the details output from **Step 3**.
 * Start the machine you want to try out: `./vagrant.sh up <machine_name>`
 
 * Destroy a machine: `./vagrant.sh destroy <machine_name>`
+
+> On-AWS Cross-Cloud simulation
+
+This part of the project is Terraform based and deploys the following components:
+
+* AWS VPC with 2 subnets (public + private)
+* Internet Gateway for the public subnet
+* NAT Gateway for the private subnet
+* Bastion Instance with public IP in public subnet
+* Windows 2019 Base server Instance in private subnet
+* Security Groups for each Instance type and cross-Instance access
+
+Working in the subfolder `on-aws`, copy the `settings.auto.tfvars.dist`
+to `settings.auto.tfvars` and fill in the details for your deployment.
+
+This Terraform project used local state only for the demo, keep that in mind!
+
+Quick deploy via:
+* `terraform init`
+* `terraform plan -out tfplan`
+* `terraform apply tfplan`
+
+
+---
+
 
 ## Azure Services Integration
 
