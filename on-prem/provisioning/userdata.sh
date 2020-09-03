@@ -39,13 +39,13 @@ else
   echo "Skip Ubuntu Python2 patching"
 fi
 
-if [ ! -d "/opt/microsoft/dependency-agent/" ];
-then
-  wget -q https://aka.ms/dependencyagentlinux -O ~/InstallDependencyAgent-Linux64.bin \
-    && echo "71b4e1da5116e61e03317c49c6702b5069f01a0c9a7cb860f6acfaf5c198740e  InstallDependencyAgent-Linux64.bin" | sha256sum --check - \
-    && bash ~/InstallDependencyAgent-Linux64.bin --check \
-    && bash ~/InstallDependencyAgent-Linux64.bin -s
-fi
+# if [ ! -d "/opt/microsoft/dependency-agent/" ];
+# then
+#   wget -q https://aka.ms/dependencyagentlinux -O ~/InstallDependencyAgent-Linux64.bin \
+#     && echo "71b4e1da5116e61e03317c49c6702b5069f01a0c9a7cb860f6acfaf5c198740e  InstallDependencyAgent-Linux64.bin" | sha256sum --check - \
+#     && bash ~/InstallDependencyAgent-Linux64.bin --check \
+#     && bash ~/InstallDependencyAgent-Linux64.bin -s
+# fi
 
 # if [ ! -d "/opt/microsoft/omsagent/" ];
 # then
