@@ -2,10 +2,13 @@
 # Change this for your deployments
 #
 $SubscriptionName = "Visual Studio Enterprise – MPN"
-$ResourceGroup = "sndbox-azure-arc"
+$Location = "westus2"
+$ResourceGroup = "sndbox-azure-arc-us2"
+# $Location = "westeurope"
+# $ResourceGroup = "sndbox-azure-arc-eu"
+
 #$WorkspaceName = "sndbox-azure-arc-law" + (Get-Random -Maximum 99999) # workspace names need to be unique across all Azure subscriptions - Get-Random helps with this for the example code
 $WorkspaceName = "sndbox-azure-arc-law"
-$Location = "westeurope"
 $ServicePrincipalName = "Sndbox-Arc-for-Servers"
 
 
