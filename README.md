@@ -37,10 +37,10 @@ to replicate the commands with `az` CLI as well.
 For Powershell with Azure-Cmdlets use `Connect-AzAccount`
 
 
-Fill in the Subscription name details in `scripts/00_az_commons.ps1`, this file
-will be included into all further steps and ensures that the main Resource Group
-for this project is present as well that the Subscription you chose is used by
-default.
+Create a copy of the globals environment template file `scripts/globals.env.ps1.dist` and
+save it under `scripts/globals.env.ps1.
+Fill in the Subscription name details and other specific overrides.
+This file will be included into all further steps automatically.
 
 > Step 2
 
