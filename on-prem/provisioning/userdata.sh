@@ -2,9 +2,9 @@
 
 set -fu
 
-cd "${HOME}"
+cd "${HOME}" || exit 1
 
-ARC_BIN="$(which azcmagent)"
+ARC_BIN="$(command -v azcmagent)"
 
 if [ -z "${ARC_BIN}" ];
 then
@@ -14,10 +14,12 @@ then
   bash ~/install_linux_azcmagent.sh
 fi
 
-VM_ID="$(azcmagent show | grep 'VM ID' | cut -d: -f2)"
+echo "Extracting possible ARC Machine ID"
+VM_ID="$(azcmagent show | grep 'VM ID' | cut -d: -f2 | tr -d '[:space:]')"
 
-if [ -z "${VM_ID}"];
+if [ -z "${VM_ID}" ];
 then
+  echo "Found no ARC Machine ID, running fresh enrollment."
   # Run connect command
   azcmagent connect \
     --service-principal-id "${arc_appId}" \
@@ -28,10 +30,12 @@ then
     --subscription-id "${arc_subscriptionId}" \
     --resource-name "$(hostname)" \
     --tags "scope=azure-arc,environment=sandbox,location=on-prem"
+else
+  echo "Found ARC Machine ID: ${VM_ID}"
 fi
 
 # ms agents seem to require python2 for now
-if [ -n "$(which apt)" ];
+if [ -n "$(command -v apt)" ];
 then
   # ubuntu 18.04 comes without python2 support
   apt install -yq python-minimal
