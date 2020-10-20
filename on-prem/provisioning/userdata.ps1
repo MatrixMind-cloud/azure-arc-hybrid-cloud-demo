@@ -30,7 +30,7 @@ msiexec /i AzureConnectedMachineAgent.msi /l*v installationlog.txt /qn | Out-Str
 
 
 $VM_ID_STR= & "$env:ProgramFiles\AzureConnectedMachineAgent\azcmagent.exe" show | Select-String -Pattern "VM\ ID"
-$VM_ID= ($VM_ID_STR -split ":")[1]
+$VM_ID= ($VM_ID_STR -split ":")[1].Trim()
 
 if ($VM_ID -eq "") {
   # Run connect command

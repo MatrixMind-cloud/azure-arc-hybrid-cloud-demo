@@ -37,10 +37,10 @@ to replicate the commands with `az` CLI as well.
 For Powershell with Azure-Cmdlets use `Connect-AzAccount`
 
 
-Fill in the Subscription name details in `scripts/00_az_commons.ps1`, this file
-will be included into all further steps and ensures that the main Resource Group
-for this project is present as well that the Subscription you chose is used by
-default.
+Create a copy of the globals environment template file `scripts/globals.env.ps1.dist` and
+save it under `scripts/globals.env.ps1.
+Fill in the Subscription name details and other specific overrides.
+This file will be included into all further steps automatically.
 
 > Step 2
 
@@ -167,3 +167,9 @@ For each Arc VM follow the steps to enable Monitoring, which will start multiple
 The integration is ready if you can see metrics being displayed in the Performance view
 and once the Map view shows your Arc VM and used port connections.
 
+
+## Azure Subscription cleanup
+
+In order to clean up all resources created by this demo run the script: `scripts/99_az_cleanup.ps1`
+
+It will remove the Log Analytics Workspace, the Resource Group and the Service Principal used for machine enrollment.

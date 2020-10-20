@@ -1,15 +1,11 @@
-#
-# Change this for your deployments
-#
-$SubscriptionName = "Visual Studio Enterprise – MPN"
-$Location = "westus2"
-$ResourceGroup = "sndbox-azure-arc-us2"
-# $Location = "westeurope"
-# $ResourceGroup = "sndbox-azure-arc-eu"
-
-#$WorkspaceName = "sndbox-azure-arc-law" + (Get-Random -Maximum 99999) # workspace names need to be unique across all Azure subscriptions - Get-Random helps with this for the example code
-$WorkspaceName = "sndbox-azure-arc-law"
-$ServicePrincipalName = "Sndbox-Arc-for-Servers"
+# globals include
+$globalsPath = "$(Split-Path $PSCommandPath -Resolve)/globals.env.ps1"
+if ( -not (Test-Path $globalsPath)) {
+    Write-Error "Globals env file not found next to this script"
+    Exit 1
+} else {
+    . $globalsPath
+}
 
 
 # get the test subscription details
